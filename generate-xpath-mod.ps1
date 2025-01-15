@@ -24,6 +24,8 @@ param(
 	[switch]$OverrideModPath,
 	# Write unified patch database to file <modPath>/PatchDB.xml. This is provided for debugging.
 	[switch]$DumpPatchDB,
+	# Remove comments from final file
+	[switch]$RemoveComments,
 	# Allow per-patch depth overrides. 
 	[Hashtable]$PartialCopyDepthOverrides,
 	# Type of mod, used to identify the ability to partial patch as well as how to read metafiles.
@@ -368,7 +370,6 @@ foreach ($file in $FilesToModify) {
 	$PruningXPath = [String]::Join("|" ,@(
 		0..$MaxDepth | %{("/*" * $_ + "/*[not(@$modifiedFlag)]")}
 	))
-	Write-Host $PruningXPath
 	foreach ($match in @(Select-XML $PruningXPath $Unmodified)) {
 		$match.Node.ParentNode.RemoveChild($match.Node) | Out-Null
 	}
@@ -376,6 +377,12 @@ foreach ($file in $FilesToModify) {
 	# Remove metadata tags
 	foreach ($match in @(Select-XML "//*[@$modifiedFlag]" $Unmodified)) {
 		$match.Node.RemoveAttribute($modifiedFlag)
+	}
+	
+	if ($RemoveComments) {
+		Select-XML "//comment()" $Unmodified | %{
+			$_.Node.ParentNode.RemoveChild($_.Node) | Out-Null
+		}
 	}
 	
 	$outfile = [IO.Path]::Join($ModDir.FullName, $BaseFilesDir.Name, $file )
