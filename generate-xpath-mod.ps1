@@ -372,13 +372,13 @@ foreach ($file in $FilesToModify) {
 	)
 	foreach ($name in $ModifiedLeafNames) {
 		foreach ($match in @(Select-XML "//$name[not(@$modifiedFlag)]" $Unmodified)) {
-			#$match.Node.ParentNode.RemoveChild($match.Node) | Out-Null
+			$match.Node.ParentNode.RemoveChild($match.Node) | Out-Null
 		}
 	}
 	
 	# Remove metadata tags
 	foreach ($match in @(Select-XML "//*[@$modifiedFlag]" $Unmodified)) {
-		#$match.Node.RemoveAttribute($modifiedFlag)
+		$match.Node.RemoveAttribute($modifiedFlag)
 	}
 	
 	$outfile = [IO.Path]::Join($ModDir.FullName, $BaseFilesDir.Name, $file )
