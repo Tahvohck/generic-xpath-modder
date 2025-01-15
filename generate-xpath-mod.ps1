@@ -38,7 +38,7 @@ param(
 
 $BaseFilesDirPath = @{
 	amodconfig = "..\..\Settlement Survival_Data\StreamingAssets\zipConfig";
-	debug = ".\unmodified\data"
+	debug = "..\debug_sample"
 }[$ModType]
 if ($null -eq $BaseFilesDirPath) { $BaseFilesDirPath = "." }
 $ModDirPath = "."
