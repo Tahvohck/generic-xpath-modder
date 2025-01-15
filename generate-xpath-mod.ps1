@@ -26,6 +26,8 @@ param(
 	[switch]$DumpPatchDB,
 	# Remove comments from final file
 	[switch]$RemoveComments,
+	# Directory prefix for generated files. Will result in the path <mod dir>/<prefix>/<source dir>/<output file>
+	[string]$OutputPrefix,
 	# Overrides for max-depth table. Format is @{"<filename>" = <max depth>}
 	# Please note that setting the depth too deep will probably result in unexpected output.
 	# Also, the file name should be in lowercase and include the extension.
@@ -387,7 +389,7 @@ foreach ($file in $FilesToModify) {
 		}
 	}
 	
-	$outfile = [IO.Path]::Join($ModDir.FullName, $BaseFilesDir.Name, $file )
+	$outfile = [IO.Path]::Join($ModDir.FullName, $OutputPrefix, $BaseFilesDir.Name, $file )
 	New-Item -Force -Type File $outfile -ea SilentlyContinue | Out-Null
 	$writer = [XML.XMLWriter]::Create($outfile, $WriterSettings)
 	$Unmodified.Save($writer)
