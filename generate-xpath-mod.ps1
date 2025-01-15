@@ -365,15 +365,12 @@ foreach ($file in $FilesToModify) {
 	}
 	
 	# Remove any unneeded nodes
-	$ModifiedLeafNames = @(
-		Select-XML "//*[@$modifiedFlag]" $Unmodified
-		| Select -Expand Node
-		| Select -Unique -Expand LocalName
-	)
-	foreach ($name in $ModifiedLeafNames) {
-		foreach ($match in @(Select-XML "//$name[not(@$modifiedFlag)]" $Unmodified)) {
-			$match.Node.ParentNode.RemoveChild($match.Node) | Out-Null
-		}
+	$PruningXPath = [String]::Join("|" ,@(
+		0..$MaxDepth | %{("/*" * $_ + "/*[not(@$modifiedFlag)]")}
+	))
+	Write-Host $PruningXPath
+	foreach ($match in @(Select-XML $PruningXPath $Unmodified)) {
+		$match.Node.ParentNode.RemoveChild($match.Node) | Out-Null
 	}
 	
 	# Remove metadata tags
