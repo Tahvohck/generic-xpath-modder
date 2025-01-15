@@ -26,7 +26,9 @@ param(
 	[switch]$DumpPatchDB,
 	# Remove comments from final file
 	[switch]$RemoveComments,
-	# Allow per-patch depth overrides. 
+	# Overrides for max-depth table. Format is @{"<filename>" = <max depth>}
+	# Please note that setting the depth too deep will probably result in unexpected output.
+	# Also, the file name should be in lowercase and include the extension.
 	[Hashtable]$PartialCopyDepthOverrides,
 	# Type of mod, used to identify the ability to partial patch as well as how to read metafiles.
 	# When using "unknown" mode, script will do no validation of mod configuration files.
