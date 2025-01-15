@@ -90,8 +90,12 @@ function Get-EarlyExit {
 }
 
 function Set-CustomFolder {
-	$CustomFolderPrompt = [Windows.Forms.FolderBrowserDialog]::new()
-	$CustomFolderPrompt.InitialDirectory = $PSScriptRoot
+	param([string]$title = "")
+	$CustomFolderPrompt = New-Object Windows.Forms.FolderBrowserDialog -Property @{
+		InitialDirectory = $PSScriptRoot
+		Description = $title
+		UseDescriptionForTitle = 1
+	}
 	do {
 		$Result = $CustomFolderPrompt.ShowDialog()
 		$ready = $Result -eq [Windows.Forms.DialogResult]::OK
@@ -243,13 +247,15 @@ function Perform-PatchOperation {
 # Main code
 # Perform overrides
 if ($OverrideDataPath) {
-	$BaseFilesDirPath = Set-CustomFolder
+	Write-Host "Overriding unmodified data location"
+	$BaseFilesDirPath = Set-CustomFolder "Select folder where unmodified files can be found"
 	Write-Host "Using custom data location"
 }
 
 if ($OverrideModPath) {
-	$ModDirPath = Set-CustomFolder
-	Write-Host "Using custom data location"
+	Write-Host "Overriding mod location"
+	$ModDirPath = Set-CustomFolder "Select folder where mod should be generated"
+	Write-Host "Using custom mod files location"
 }
 
 # Validate directories
