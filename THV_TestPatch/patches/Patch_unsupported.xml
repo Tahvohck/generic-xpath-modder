@@ -1,0 +1,6 @@
+<Patch File="test.xml">
+	<Operation Class="PatchOperationSetName">
+		<xpath>//node[ID=1]</xpath>
+		<name>not_node</name>
+	</Operation>
+</Patch>

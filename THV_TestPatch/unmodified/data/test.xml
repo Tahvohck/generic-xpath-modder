@@ -1,0 +1,47 @@
+<root>
+	<node>
+		<ID>1</ID>
+		<guid>6bf192ac-7276-4448-bb41-ebcf678e57d9</guid>
+		<this>
+			<is>
+				<a>
+					<very>
+						<deep>
+							<node>
+								<to>
+									<test>
+										<deep>
+											<flagging>Hi</flagging>
+										</deep>
+									</test>
+								</to>
+							</node>
+						</deep>
+					</very>
+				</a>
+			</is>
+		</this>
+	</node>
+	<node>
+		<ID>2</ID>
+		<guid>42cf0c33-9512-4f7d-9a22-f1dd0f90b7b4</guid>
+	</node>
+	<node>
+		<ID>3</ID>
+		<guid>cb9381d5-8831-4ea9-92f8-879510427969</guid>
+	</node>
+	<node>
+		<ID>4</ID>
+		<guid>e27d04ac-14c9-481f-a722-78ada969b8f0</guid>
+	</node>
+	<node>
+		<ID>5</ID>
+		<guid>6cdd50de-d295-4640-b085-efe6dbf4945c</guid>
+		<replaceTarget>Old</replaceTarget>
+	</node>
+	<node>
+		<ID>10</ID>
+		<guid>dbdde4d4-1bde-4e5f-b095-dac4e9b61497</guid>
+		<attr RemoveThis="RemoveMe" ReplaceThis="ReplaceMe"/>
+	</node>
+</root>

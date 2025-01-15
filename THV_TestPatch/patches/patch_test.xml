@@ -1,0 +1,47 @@
+<Patch File="test.xml">
+	<Operation Class="PatchOperationAdd">
+		<xpath>//node[ID=1]</xpath>
+		<value>
+			<color>Yellow</color>
+			<Taste>Salty</Taste>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>//*[flagging]</xpath>
+		<value>
+			<worked />
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>//node[ID=1]/guid</xpath>
+		<value>
+			<guid>89ec9d4c-1476-4669-863e-d61c3d44d5c5</guid>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationAdd">
+		<xpath>//node[ID=1]</xpath>
+		<order>prepend</order>
+		<value>
+			<Smell>Pleasant</Smell>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationInsert">
+		<xpath>//node[ID=1]</xpath>
+		<order>append</order>
+		<value>
+			<node>
+				<ID>100</ID>
+				<guid>9b70af5c-e315-481d-b401-f56dc7516559</guid>
+			</node>
+		</value>
+	</Operation>
+	<Operation Class="PatchOperationRemove">
+		<xpath>//node[ID=2 or ID=4]</xpath>
+	</Operation>
+	<Operation Class="PatchOperationReplace">
+		<xpath>//node[ID=5]/replaceTarget</xpath>
+		<value>
+			<replaceTarget>New</replaceTarget>
+		</value>
+	</Operation>
+</Patch>

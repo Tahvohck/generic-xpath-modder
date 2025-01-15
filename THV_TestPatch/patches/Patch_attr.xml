@@ -1,0 +1,16 @@
+<Patch File="test.xml">
+	<Operation Class="PatchOperationAttributeAdd">
+		<xpath>//node/attr</xpath>
+		<attribute>AddedAttr</attribute>
+		<value>New Attribute</value>
+	</Operation>
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>//node/attr</xpath>
+		<attribute>ReplaceThis</attribute>
+		<value>Replaced</value>
+	</Operation>
+	<Operation Class="PatchOperationAttributeRemove">
+		<xpath>//node/attr</xpath>
+		<attribute>RemoveThis</attribute>
+	</Operation>
+</Patch>

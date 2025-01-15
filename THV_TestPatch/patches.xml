@@ -1,0 +1,18 @@
+<Patches>
+	<File file="test.xml">
+		<patch>
+			<!--Increase Plant Rate chance so that foresters are more likely to plant than cut. (1:1 -> 2:1) -->
+			<xpath>//BuildingConfig[ID=3002]/PlantRate[text()='50']</xpath>
+			<newNode>
+				<PlantRate>67</PlantRate>
+			</newNode>
+		</patch>
+		<patch>
+			<!--Increase maximum workers -->
+			<xpath>//BuildingConfig[ID=3002]/WorkerRange/Upper</xpath>
+			<newNode>
+				<Upper>8</Upper>
+			</newNode>
+		</patch>
+	</File>
+</Patches>
